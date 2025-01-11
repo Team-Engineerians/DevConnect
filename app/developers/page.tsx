@@ -1,4 +1,6 @@
-import { DeveloperList } from '@/components/developer-list';
+"use client"
+
+import { DeveloperListWithHuddle } from '@/components/developer-list';
 import { Navbar } from '@/components/navbar';
 import { SearchFilters } from '@/components/search-filters';
 
@@ -11,7 +13,7 @@ export default function DevelopersPage() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <SearchFilters />
           <div className="lg:col-span-3">
-            <DeveloperList />
+            <DeveloperListWithHuddle />
           </div>
         </div>
       </div>

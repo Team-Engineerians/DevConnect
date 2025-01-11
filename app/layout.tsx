@@ -3,8 +3,11 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
+<<<<<<< HEAD
 import { ClerkProvider } from '@clerk/nextjs';
 import { UserButton } from "@clerk/nextjs";
+=======
+>>>>>>> 44fcea5 (huddle updation added)
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,6 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+<<<<<<< HEAD
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body className={inter.className} suppressHydrationWarning>
@@ -29,5 +33,17 @@ export default function RootLayout({
         </body>
       </html>
     </ClerkProvider>
+=======
+
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className} suppressHydrationWarning>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+          <Toaster />
+        </ThemeProvider>
+      </body>
+    </html>
+
+>>>>>>> 44fcea5 (huddle updation added)
   );
 }

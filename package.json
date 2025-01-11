@@ -11,6 +11,7 @@
   "dependencies": {
     "@clerk/nextjs": "^6.9.9",
     "@hookform/resolvers": "^3.9.0",
+    "@huddle01/iframe": "^0.0.15",
     "@next/swc-wasm-nodejs": "13.5.1",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
@@ -41,6 +42,7 @@
     "@radix-ui/react-tooltip": "^1.1.2",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",
+    "axios": "^1.7.9",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
@@ -67,8 +69,12 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@types/node": "22.10.5",
     "@types/react": "19.0.4",
     "typescript": "5.7.3"
+=======
+    "@types/axios": "^0.14.4"
+>>>>>>> 44fcea5 (huddle updation added)
   }
 }
