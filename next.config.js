@@ -7,7 +7,7 @@ const nextConfig = {
   images: { unoptimized: true },
   // Suppress browser extension warnings
   reactStrictMode: true,
-  swcMinify: true,
+  // swcMinify: true,
 };
 
 module.exports = nextConfig;
