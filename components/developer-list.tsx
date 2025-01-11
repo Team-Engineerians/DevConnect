@@ -4,6 +4,19 @@ import { Button } from '@/components/ui/button';
 import { CalendarIcon, MessageSquare, Star, Video } from 'lucide-react';
 import { HuddleIframe } from "@huddle01/iframe";
 
+interface FilterState {
+  selectedSkills: string[];
+  priceRange: number[];
+  availability: {
+    availableNow: boolean;
+    availableWeek: boolean;
+  };
+}
+
+interface DeveloperListProps {
+  filters: FilterState;
+}
+
 const developers = [
   {
     id: 1,
@@ -25,16 +38,97 @@ const developers = [
     skills: ['Web3.js', 'Solidity', 'Node.js', 'DeFi'],
     available: true,
   },
-  // More developers...
+  {
+    id: 3,
+    name: 'Michael Johnson',
+    title: 'Full-Stack Blockchain Developer',
+    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    rate: 160,
+    rating: 4.7,
+    skills: ['Smart Contracts', 'Rust', 'Solana', 'TypeScript'],
+    available: true,
+  },
+  {
+    id: 4,
+    name: 'Emily Davis',
+    title: 'Blockchain Security Specialist',
+    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    rate: 200,
+    rating: 4.9,
+    skills: ['Auditing', 'Ethereum', 'Python', 'OpenZeppelin'],
+    available: false,
+  },
+  {
+    id: 5,
+    name: 'James Carter',
+    title: 'DeFi Developer',
+    image: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    rate: 140,
+    rating: 4.6,
+    skills: ['DeFi Protocols', 'Web3.js', 'JavaScript', 'React'],
+    available: true,
+  },
+  {
+    id: 6,
+    name: 'Sophia Wilson',
+    title: 'Smart Contract Developer',
+    image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    rate: 170,
+    rating: 4.8,
+    skills: ['Solidity', 'Truffle', 'Hardhat', 'TypeScript'],
+    available: false,
+  },
+  {
+    id: 7,
+    name: 'Chris Martinez',
+    title: 'Blockchain Consultant',
+    image: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    rate: 190,
+    rating: 4.9,
+    skills: ['Ethereum', 'Business Analysis', 'Python', 'Hyperledger'],
+    available: true,
+  },
+  {
+    id: 8,
+    name: 'Olivia Brown',
+    title: 'NFT Developer',
+    image: 'https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    rate: 120,
+    rating: 4.7,
+    skills: ['NFT Smart Contracts', 'JavaScript', 'IPFS', 'Blockchain'],
+    available: true,
+  },
 ];
 
-export function DeveloperListWithHuddle() {
+export function DeveloperListWithHuddle({ filters }: DeveloperListProps) {
+  const filteredDevelopers = developers.filter(dev => {
+    // Filter by skills
+    if (filters.selectedSkills.length > 0) {
+      const hasSelectedSkills = filters.selectedSkills.some(skill => 
+        dev.skills.includes(skill)
+      );
+      if (!hasSelectedSkills) return false;
+    }
+
+    // Filter by price range
+    if (dev.rate < filters.priceRange[0] || dev.rate > filters.priceRange[1]) {
+      return false;
+    }
+
+    // Filter by availability
+    if (filters.availability.availableNow && !dev.available) {
+      return false;
+    }
+
+    return true;
+  });
+
   return (
     <div className="space-y-6">
       {/* Developer List Section */}
       <div>
-        {developers.map((dev) => (
-          <Card key={dev.id} className="p-6">
+        {filteredDevelopers.map((dev) => (
+          <Card key={dev.id} className="p-6 mb-4">
             <div className="flex items-start gap-6">
               <img
                 src={dev.image}
