@@ -5,10 +5,12 @@ import { MoonIcon, SunIcon, Wallet2Icon } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { SignInButton, SignUpButton, UserButton, useAuth } from "@clerk/nextjs";
 
 export function Navbar() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const { isSignedIn, userId } = useAuth();
 
   // Only render theme toggle after mounting to avoid hydration mismatch
   useEffect(() => {
@@ -36,8 +38,20 @@ export function Navbar() {
             <Link href="/about">
               <Button variant="ghost">About</Button>
             </Link>
-            <Button variant="outline">Sign In</Button>
-            <Button>Get Started</Button>
+            
+            {isSignedIn ? (
+              <UserButton afterSignOutUrl="/" />
+            ) : (
+              <>
+                <SignInButton mode="modal">
+                  <Button variant="outline">Sign In</Button>
+                </SignInButton>
+                <SignUpButton mode="modal">
+                  <Button>Get Started</Button>
+                </SignUpButton>
+              </>
+            )}
+
             {mounted && (
               <Button
                 variant="ghost"
