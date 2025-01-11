@@ -69,12 +69,9 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-<<<<<<< HEAD
     "@types/node": "22.10.5",
     "@types/react": "19.0.4",
-    "typescript": "5.7.3"
-=======
+    "typescript": "5.7.3",
     "@types/axios": "^0.14.4"
->>>>>>> 44fcea5 (huddle updation added)
   }
 }
