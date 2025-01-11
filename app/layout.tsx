@@ -30,14 +30,5 @@ export default function RootLayout({
       </html>
     </ClerkProvider>
 
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className} suppressHydrationWarning>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-          <Toaster />
-        </ThemeProvider>
-      </body>
-    </html>
-
   );
 }
