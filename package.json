@@ -12,6 +12,8 @@
     "@clerk/nextjs": "^6.9.9",
     "@hookform/resolvers": "^3.9.0",
     "@huddle01/iframe": "^0.0.15",
+    "@huddle01/react": "^2.3.1",
+    "@huddle01/server-sdk": "^2.5.6",
     "@next/swc-wasm-nodejs": "13.5.1",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
@@ -69,9 +71,9 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.4",
     "@types/node": "22.10.5",
     "@types/react": "19.0.4",
-    "typescript": "5.7.3",
-    "@types/axios": "^0.14.4"
+    "typescript": "5.7.3"
   }
 }

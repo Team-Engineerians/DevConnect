@@ -1,7 +1,11 @@
 "use client"
 
+<<<<<<< HEAD
 import { useState } from 'react';
 import { DeveloperListWithHuddle } from '@/components/developer-list';
+=======
+import { DeveloperList } from '@/components/developer-list';
+>>>>>>> 94d4164 (fixes)
 import { Navbar } from '@/components/navbar';
 import { SearchFilters } from '@/components/search-filters';
 
@@ -32,7 +36,11 @@ export default function DevelopersPage() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <SearchFilters filters={filters} setFilters={setFilters} />
           <div className="lg:col-span-3">
+<<<<<<< HEAD
             <DeveloperListWithHuddle filters={filters} />
+=======
+            <DeveloperList />
+>>>>>>> 94d4164 (fixes)
           </div>
         </div>
       </div>
