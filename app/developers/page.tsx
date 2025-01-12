@@ -3,6 +3,7 @@
 import { DeveloperList } from '@/components/developer-list';
 import { Navbar } from '@/components/navbar';
 import { SearchFilters } from '@/components/search-filters';
+import { useState } from 'react';
 
 interface FilterState {
   selectedSkills: string[];
