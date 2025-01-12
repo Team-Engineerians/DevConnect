@@ -32,7 +32,7 @@ export default function DevelopersPage() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <SearchFilters filters={filters} setFilters={setFilters} />
           <div className="lg:col-span-3">
-            <DeveloperList />
+          <DeveloperList filters={filters} />
           </div>
         </div>
       </div>

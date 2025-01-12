@@ -17,7 +17,6 @@ interface FilterState {
 interface DeveloperListProps {
   filters: FilterState;
 }
-
 const developers = [
   {
     id: 1,
@@ -121,65 +120,100 @@ const developers = [
   },
 ];
 
-export function DeveloperList() {
+export function DeveloperList({ filters }: DeveloperListProps) {
+  const filteredDevelopers = developers.filter((dev) => {
+    // Filter by price range
+    if (dev.rate < filters.priceRange[0] || dev.rate > filters.priceRange[1]) {
+      return false;
+    }
+
+    // Filter by availability
+    if (filters.availability.availableNow && !dev.available) {
+      return false;
+    }
+
+    // Filter by skills
+    if (filters.selectedSkills.length > 0) {
+      const hasAllSelectedSkills = filters.selectedSkills.every((skill) =>
+        dev.skills.includes(skill)
+      );
+      if (!hasAllSelectedSkills) {
+        return false;
+      }
+    }
+
+    return true;
+  });
+
   return (
     <div className="space-y-6">
-      {developers.map((dev) => (
-        <Card key={dev.id} className="p-6">
-          <div className="flex items-start gap-6">
-            <img
-              src={dev.image}
-              alt={dev.name}
-              className="w-20 h-20 rounded-full object-cover"
-            />
-            <div className="flex-1">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-lg font-semibold">{dev.name}</h3>
-                  <p className="text-muted-foreground">{dev.title}</p>
+      {filteredDevelopers.length === 0 ? (
+        <Card className="p-6">
+          <p className="text-center text-muted-foreground">
+            No developers found matching your criteria. Try adjusting your filters.
+          </p>
+        </Card>
+      ) : (
+        filteredDevelopers.map((dev) => (
+          <Card key={dev.id} className="p-6">
+            <div className="flex items-start gap-6">
+              <img
+                src={dev.image}
+                alt={dev.name}
+                className="w-20 h-20 rounded-full object-cover"
+              />
+              <div className="flex-1">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-lg font-semibold">{dev.name}</h3>
+                    <p className="text-muted-foreground">{dev.title}</p>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-lg font-semibold">${dev.rate}/hr</div>
+                    <div className="flex items-center text-muted-foreground">
+                      <Star className="w-4 h-4 fill-current text-yellow-400" />
+                      <span className="ml-1">{dev.rating}</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-right">
-                  <div className="text-lg font-semibold">${dev.rate}/hr</div>
-                  <div className="flex items-center text-muted-foreground">
-                    <Star className="w-4 h-4 fill-current text-yellow-400" />
-                    <span className="ml-1">{dev.rating}</span>
+                
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {dev.skills.map((skill) => (
+                    <Badge 
+                      key={skill} 
+                      variant={filters.selectedSkills.includes(skill) ? "default" : "secondary"}
+                    >
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+
+                <div className="mt-6 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Badge variant={dev.available ? "success" : "secondary"}>
+                      {dev.available ? 'Available Now' : 'Unavailable'}
+                    </Badge>
+                    <span className="flex items-center text-sm text-muted-foreground">
+                      <CalendarIcon className="w-4 h-4 mr-1" />
+                      Next available: Today
+                    </span>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button variant="outline" size="sm">
+                      <MessageSquare className="w-4 h-4 mr-2" />
+                      Message
+                    </Button>
+                    <Button size="sm">
+                      <Video className="w-4 h-4 mr-2" />
+                      Schedule Call
+                    </Button>
                   </div>
                 </div>
               </div>
-              
-              <div className="mt-4 flex flex-wrap gap-2">
-                {dev.skills.map((skill) => (
-                  <Badge key={skill} variant="secondary">
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
-
-              <div className="mt-6 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Badge variant={dev.available ? "success" : "secondary"}>
-                    {dev.available ? 'Available Now' : 'Unavailable'}
-                  </Badge>
-                  <span className="flex items-center text-sm text-muted-foreground">
-                    <CalendarIcon className="w-4 h-4 mr-1" />
-                    Next available: Today
-                  </span>
-                </div>
-                <div className="flex gap-2">
-                  <Button variant="outline" size="sm">
-                    <MessageSquare className="w-4 h-4 mr-2" />
-                    Message
-                  </Button>
-                  <Button size="sm">
-                    <Video className="w-4 h-4 mr-2" />
-                    Schedule Call
-                  </Button>
-                </div>
-              </div>
             </div>
-          </div>
-        </Card>
-      ))}
+          </Card>
+        ))
+      )}
     </div>
   );
 }
