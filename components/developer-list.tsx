@@ -41,15 +41,6 @@ const developers = [
   },
   {
     id: 3,
-<<<<<<< HEAD
-    name: 'Michael Johnson',
-    title: 'Full-Stack Blockchain Developer',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    rate: 160,
-    rating: 4.7,
-    skills: ['Smart Contracts', 'Rust', 'Solana', 'TypeScript'],
-    available: true,
-=======
     name: 'Michael Rodriguez',
     title: 'Smart Contract Developer',
     image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
@@ -57,28 +48,10 @@ const developers = [
     rating: 4.7,
     skills: ['Rust', 'Solidity', 'Smart Contracts'],
     available: false,
->>>>>>> 94d4164 (fixes)
   },
   {
     id: 4,
     name: 'Emily Davis',
-<<<<<<< HEAD
-    title: 'Blockchain Security Specialist',
-    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    rate: 200,
-    rating: 4.9,
-    skills: ['Auditing', 'Ethereum', 'Python', 'OpenZeppelin'],
-    available: false,
-  },
-  {
-    id: 5,
-    name: 'James Carter',
-    title: 'DeFi Developer',
-    image: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    rate: 140,
-    rating: 4.6,
-    skills: ['DeFi Protocols', 'Web3.js', 'JavaScript', 'React'],
-=======
     title: 'Full-Stack Blockchain Developer',
     image: 'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     rate: 160,
@@ -94,39 +67,10 @@ const developers = [
     rate: 200,
     rating: 4.9,
     skills: ['Security Audits', 'Penetration Testing', 'Smart Contracts', 'Python'],
->>>>>>> 94d4164 (fixes)
     available: true,
   },
   {
     id: 6,
-<<<<<<< HEAD
-    name: 'Sophia Wilson',
-    title: 'Smart Contract Developer',
-    image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    rate: 170,
-    rating: 4.8,
-    skills: ['Solidity', 'Truffle', 'Hardhat', 'TypeScript'],
-    available: false,
-  },
-  {
-    id: 7,
-    name: 'Chris Martinez',
-    title: 'Blockchain Consultant',
-    image: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    rate: 190,
-    rating: 4.9,
-    skills: ['Ethereum', 'Business Analysis', 'Python', 'Hyperledger'],
-    available: true,
-  },
-  {
-    id: 8,
-    name: 'Olivia Brown',
-    title: 'NFT Developer',
-    image: 'https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    rate: 120,
-    rating: 4.7,
-    skills: ['NFT Smart Contracts', 'JavaScript', 'IPFS', 'Blockchain'],
-=======
     name: 'Sophia Turner',
     title: 'Decentralized App (DApp) Developer',
     image: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
@@ -173,61 +117,10 @@ const developers = [
     rate: 190,
     rating: 4.8,
     skills: ['Hyperledger Fabric', 'Go', 'Smart Contracts', 'Blockchain Governance'],
->>>>>>> 94d4164 (fixes)
     available: true,
   },
 ];
 
-<<<<<<< HEAD
-export function DeveloperListWithHuddle({ filters }: DeveloperListProps) {
-  const filteredDevelopers = developers.filter(dev => {
-    // Filter by skills
-    if (filters.selectedSkills.length > 0) {
-      const hasSelectedSkills = filters.selectedSkills.some(skill => 
-        dev.skills.includes(skill)
-      );
-      if (!hasSelectedSkills) return false;
-    }
-
-    // Filter by price range
-    if (dev.rate < filters.priceRange[0] || dev.rate > filters.priceRange[1]) {
-      return false;
-    }
-
-    // Filter by availability
-    if (filters.availability.availableNow && !dev.available) {
-      return false;
-    }
-
-    return true;
-  });
-
-  return (
-    <div className="space-y-6">
-      {/* Developer List Section */}
-      <div>
-        {filteredDevelopers.map((dev) => (
-          <Card key={dev.id} className="p-6 mb-4">
-            <div className="flex items-start gap-6">
-              <img
-                src={dev.image}
-                alt={dev.name}
-                className="w-20 h-20 rounded-full object-cover"
-              />
-              <div className="flex-1">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-lg font-semibold">{dev.name}</h3>
-                    <p className="text-muted-foreground">{dev.title}</p>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-lg font-semibold">${dev.rate}/hr</div>
-                    <div className="flex items-center text-muted-foreground">
-                      <Star className="w-4 h-4 fill-current text-yellow-400" />
-                      <span className="ml-1">{dev.rating}</span>
-                    </div>
-                  </div>
-=======
 export function DeveloperList() {
   return (
     <div className="space-y-6">
@@ -244,7 +137,6 @@ export function DeveloperList() {
                 <div>
                   <h3 className="text-lg font-semibold">{dev.name}</h3>
                   <p className="text-muted-foreground">{dev.title}</p>
->>>>>>> 94d4164 (fixes)
                 </div>
                 <div className="text-right">
                   <div className="text-lg font-semibold">${dev.rate}/hr</div>
